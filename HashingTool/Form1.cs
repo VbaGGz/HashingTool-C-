@@ -74,126 +74,144 @@ namespace HashingTool
 
             byte[] arrbytHashValue;
             System.IO.FileStream oFileStream = null;
-            if (comboBox1.SelectedIndex == 0)
+            if (comboBox1.Text == "")
             {
-                System.Security.Cryptography.MD5CryptoServiceProvider oMD5Hasher =
-                           new System.Security.Cryptography.MD5CryptoServiceProvider();
+                const string message = "Please Choose a Hash Type";
+                const string caption = "Hash Type";
+                var result = MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }    
 
-                try
-                {
-                    oFileStream = GetFileStream(filePath);
-                    arrbytHashValue = oMD5Hasher.ComputeHash(oFileStream);
-                    oFileStream.Close();
-
-                    strHashData = System.BitConverter.ToString(arrbytHashValue);
-                    strHashData = strHashData.Replace("-", "");
-                    strResult = strHashData;
-                }
-                catch (System.Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message, "Error!",
-                               System.Windows.Forms.MessageBoxButtons.OK,
-                               System.Windows.Forms.MessageBoxIcon.Error,
-                               System.Windows.Forms.MessageBoxDefaultButton.Button1);
-                }
-
-                textBox1.Text = strResult;
+            if (label_Path.Text == "")
+            {
+                const string message = "Please browes for a file..";
+                const string caption = "Open File";
+                var result = MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else if (comboBox1.SelectedIndex == 1)
+            else
             {
-                System.Security.Cryptography.SHA1CryptoServiceProvider oSHA1Hasher =
-              new System.Security.Cryptography.SHA1CryptoServiceProvider();
-
-                try
+                if (comboBox1.SelectedIndex == 0)
                 {
-                    oFileStream = GetFileStream(filePath);
-                    arrbytHashValue = oSHA1Hasher.ComputeHash(oFileStream);
-                    oFileStream.Close();
+                    System.Security.Cryptography.MD5CryptoServiceProvider oMD5Hasher =
+                               new System.Security.Cryptography.MD5CryptoServiceProvider();
 
-                    strHashData = System.BitConverter.ToString(arrbytHashValue);
-                    strHashData = strHashData.Replace("-", "");
-                    strResult = strHashData;
-                }
-                catch (System.Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message, "Error!",
-                             System.Windows.Forms.MessageBoxButtons.OK,
-                             System.Windows.Forms.MessageBoxIcon.Error,
-                             System.Windows.Forms.MessageBoxDefaultButton.Button1);
-                }
-                textBox1.Text = strResult;
-            }
-            else if (comboBox1.SelectedIndex == 2)
-            {
-                System.Security.Cryptography.SHA256CryptoServiceProvider oSHA256Hasher =
-              new System.Security.Cryptography.SHA256CryptoServiceProvider();
+                    try
+                    {
+                        oFileStream = GetFileStream(filePath);
+                        arrbytHashValue = oMD5Hasher.ComputeHash(oFileStream);
+                        oFileStream.Close();
 
-                try
-                {
-                    oFileStream = GetFileStream(filePath);
-                    arrbytHashValue = oSHA256Hasher.ComputeHash(oFileStream);
-                    oFileStream.Close();
+                        strHashData = System.BitConverter.ToString(arrbytHashValue);
+                        strHashData = strHashData.Replace("-", "");
+                        strResult = strHashData;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message, "Error!",
+                                   System.Windows.Forms.MessageBoxButtons.OK,
+                                   System.Windows.Forms.MessageBoxIcon.Error,
+                                   System.Windows.Forms.MessageBoxDefaultButton.Button1);
+                    }
 
-                    strHashData = System.BitConverter.ToString(arrbytHashValue);
-                    strHashData = strHashData.Replace("-", "");
-                    strResult = strHashData;
+                    textBox1.Text = strResult;
                 }
-                catch (System.Exception ex)
+                else if (comboBox1.SelectedIndex == 1)
                 {
-                    System.Windows.Forms.MessageBox.Show(ex.Message, "Error!",
-                             System.Windows.Forms.MessageBoxButtons.OK,
-                             System.Windows.Forms.MessageBoxIcon.Error,
-                             System.Windows.Forms.MessageBoxDefaultButton.Button1);
-                }
-                textBox1.Text = strResult;
-            }
-            else if (comboBox1.SelectedIndex == 3)
-            {
-                System.Security.Cryptography.SHA384CryptoServiceProvider oSHA384Hasher =
-              new System.Security.Cryptography.SHA384CryptoServiceProvider();
+                    System.Security.Cryptography.SHA1CryptoServiceProvider oSHA1Hasher =
+                  new System.Security.Cryptography.SHA1CryptoServiceProvider();
 
-                try
-                {
-                    oFileStream = GetFileStream(filePath);
-                    arrbytHashValue = oSHA384Hasher.ComputeHash(oFileStream);
-                    oFileStream.Close();
+                    try
+                    {
+                        oFileStream = GetFileStream(filePath);
+                        arrbytHashValue = oSHA1Hasher.ComputeHash(oFileStream);
+                        oFileStream.Close();
 
-                    strHashData = System.BitConverter.ToString(arrbytHashValue);
-                    strHashData = strHashData.Replace("-", "");
-                    strResult = strHashData;
+                        strHashData = System.BitConverter.ToString(arrbytHashValue);
+                        strHashData = strHashData.Replace("-", "");
+                        strResult = strHashData;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message, "Error!",
+                                 System.Windows.Forms.MessageBoxButtons.OK,
+                                 System.Windows.Forms.MessageBoxIcon.Error,
+                                 System.Windows.Forms.MessageBoxDefaultButton.Button1);
+                    }
+                    textBox1.Text = strResult;
                 }
-                catch (System.Exception ex)
+                else if (comboBox1.SelectedIndex == 2)
                 {
-                    System.Windows.Forms.MessageBox.Show(ex.Message, "Error!",
-                             System.Windows.Forms.MessageBoxButtons.OK,
-                             System.Windows.Forms.MessageBoxIcon.Error,
-                             System.Windows.Forms.MessageBoxDefaultButton.Button1);
-                }
-                textBox1.Text = strResult;
-            }
-            else if (comboBox1.SelectedIndex == 4)
-            {
-                System.Security.Cryptography.SHA512CryptoServiceProvider oSHA512Hasher =
-              new System.Security.Cryptography.SHA512CryptoServiceProvider();
+                    System.Security.Cryptography.SHA256CryptoServiceProvider oSHA256Hasher =
+                  new System.Security.Cryptography.SHA256CryptoServiceProvider();
 
-                try
-                {
-                    oFileStream = GetFileStream(filePath);
-                    arrbytHashValue = oSHA512Hasher.ComputeHash(oFileStream);
-                    oFileStream.Close();
+                    try
+                    {
+                        oFileStream = GetFileStream(filePath);
+                        arrbytHashValue = oSHA256Hasher.ComputeHash(oFileStream);
+                        oFileStream.Close();
 
-                    strHashData = System.BitConverter.ToString(arrbytHashValue);
-                    strHashData = strHashData.Replace("-", "");
-                    strResult = strHashData;
+                        strHashData = System.BitConverter.ToString(arrbytHashValue);
+                        strHashData = strHashData.Replace("-", "");
+                        strResult = strHashData;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message, "Error!",
+                                 System.Windows.Forms.MessageBoxButtons.OK,
+                                 System.Windows.Forms.MessageBoxIcon.Error,
+                                 System.Windows.Forms.MessageBoxDefaultButton.Button1);
+                    }
+                    textBox1.Text = strResult;
                 }
-                catch (System.Exception ex)
+                else if (comboBox1.SelectedIndex == 3)
                 {
-                    System.Windows.Forms.MessageBox.Show(ex.Message, "Error!",
-                             System.Windows.Forms.MessageBoxButtons.OK,
-                             System.Windows.Forms.MessageBoxIcon.Error,
-                             System.Windows.Forms.MessageBoxDefaultButton.Button1);
+                    System.Security.Cryptography.SHA384CryptoServiceProvider oSHA384Hasher =
+                  new System.Security.Cryptography.SHA384CryptoServiceProvider();
+
+                    try
+                    {
+                        oFileStream = GetFileStream(filePath);
+                        arrbytHashValue = oSHA384Hasher.ComputeHash(oFileStream);
+                        oFileStream.Close();
+
+                        strHashData = System.BitConverter.ToString(arrbytHashValue);
+                        strHashData = strHashData.Replace("-", "");
+                        strResult = strHashData;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message, "Error!",
+                                 System.Windows.Forms.MessageBoxButtons.OK,
+                                 System.Windows.Forms.MessageBoxIcon.Error,
+                                 System.Windows.Forms.MessageBoxDefaultButton.Button1);
+                    }
+                    textBox1.Text = strResult;
                 }
-                textBox1.Text = strResult;
+                else if (comboBox1.SelectedIndex == 4)
+                {
+                    System.Security.Cryptography.SHA512CryptoServiceProvider oSHA512Hasher =
+                  new System.Security.Cryptography.SHA512CryptoServiceProvider();
+
+                    try
+                    {
+                        oFileStream = GetFileStream(filePath);
+                        arrbytHashValue = oSHA512Hasher.ComputeHash(oFileStream);
+                        oFileStream.Close();
+
+                        strHashData = System.BitConverter.ToString(arrbytHashValue);
+                        strHashData = strHashData.Replace("-", "");
+                        strResult = strHashData;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message, "Error!",
+                                 System.Windows.Forms.MessageBoxButtons.OK,
+                                 System.Windows.Forms.MessageBoxIcon.Error,
+                                 System.Windows.Forms.MessageBoxDefaultButton.Button1);
+                    }
+                    textBox1.Text = strResult;
+                }
             }
         }
     }

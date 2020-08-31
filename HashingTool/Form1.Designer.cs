@@ -121,6 +121,7 @@ namespace HashingTool
             resources.ApplyResources(this.button_Hash, "button_Hash");
             this.button_Hash.Name = "button_Hash";
             this.button_Hash.UseVisualStyleBackColor = true;
+            this.button_Hash.Click += new System.EventHandler(this.button_Hash_Click);
             // 
             // textBox1
             // 
